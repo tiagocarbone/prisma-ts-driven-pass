@@ -105,8 +105,6 @@ export async function credentialPutRepository(userId:  number, credentialId: num
         const existingCredential = await prisma.credentials.findFirst({
             where: { id: credentialId },
         });
-       console.log("userId", userId)
-       // console.log("existingCredential", existingCredential)
 
 
         if ( !existingCredential ) throw { type: "not found", message: "Credencial não existe" };
@@ -128,7 +126,6 @@ export async function credentialPutRepository(userId:  number, credentialId: num
             },
         });
 
-        console.log(conflictingCredential)
 
         if (conflictingCredential)  throw { type: "conflict", message: "Já existe uma credencial com este título para este usuário" };
         
